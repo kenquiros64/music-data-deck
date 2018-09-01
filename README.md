@@ -10,7 +10,7 @@ What things you need to install the software and how to install them. For this p
 
 ```
 Golang 1.9.7
-
+goji.io
 ```
 
 ### Installing Go on Linux, macOS
@@ -27,7 +27,6 @@ sudo tar -C /usr/local -xzf go1.9.7.linux-amd64.tar.gz
 
 Add /usr/local/go/bin to the PATH environment variable. You can do this by adding this line to your /etc/profile (for a system-wide installation) or $HOME/.profile:
 
-
 ```
 export PATH=$PATH:/usr/local/go/bin
 ```
@@ -40,3 +39,10 @@ Download the archive from https://golang.org/doc/install?download=go1.9.7.window
 
 Open the MSI file and follow the prompts to install the Go tools.
 
+### Installing Goji
+
+Install Goji by running the following in your terminal:
+
+```
+go get goji.io
+```
