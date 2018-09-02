@@ -4,6 +4,26 @@ Welcome to Music DataDeck.
 
 ## Getting Started
 
+First, you have to clone the project from GitHub into your workspace.
+
+### 1. Cloning the project
+
+Run the following command to clone the project. Clone the project in the src folder of your worksapce.
+
+```
+git clone https://github.com/kenquiros64/music-data-deck.git
+```
+
+### 2. Installing dependencies
+
+The next step you must do is to install all dependecies.It is necessary to have installed glide. Run the command below to install all dependencies.
+
+```
+glide install
+```
+
+## Project configuration
+
 ### Prerequisites
 
 What things you need to install the software and how to install them. For this project we will use Golang 1.9.7.
@@ -46,3 +66,18 @@ Install Goji by running the following in your terminal:
 ```
 go get goji.io
 ```
+
+### Add More Dependencies 
+
+It's neccesary to install glide for add more dependecies.
+
+```
+glide get github.com/foo/bar
+```
+
+Or
+
+```
+glide get github.com/foo/bar#^1.2.3
+```
+
