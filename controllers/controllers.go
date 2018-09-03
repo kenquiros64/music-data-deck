@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"music-data-deck/repositories"
 	"net/http"
+	"strconv"
 
 	"goji.io/pat"
 )
@@ -26,7 +27,7 @@ func AllSongs(w http.ResponseWriter, r *http.Request) {
 func SearchSong(w http.ResponseWriter, r *http.Request) {
 	value := pat.Param(r, "value")
 	songs := repositories.SearchSong(value)
-	songs = nil
+
 	if songs == nil {
 		http.Error(w, "Something has occured. ", http.StatusInternalServerError)
 	} else {
@@ -59,5 +60,32 @@ func GenresSongInfo(w http.ResponseWriter, r *http.Request) {
 	} else {
 		jsonOut, _ := json.Marshal(genresSongInfo)
 		fmt.Fprintf(w, string(jsonOut))
+	}
+}
+
+// SongsByLength GET Method ["/songs/search/:min/:max"]
+// Return a list of the songs by passing a minimum and maximum length.
+func SongsByLength(w http.ResponseWriter, r *http.Request) {
+	min := pat.Param(r, "min")
+	max := pat.Param(r, "max")
+
+	// string to int
+	minLength, errMin := strconv.Atoi(min)
+	maxLength, errMax := strconv.Atoi(max)
+	if errMin != nil || errMax != nil {
+		http.Error(w, "Incorrect minimum or maximun value.", http.StatusBadRequest)
+	}
+
+	if minLength <= maxLength {
+		songs := repositories.SongsByLength(minLength, maxLength)
+
+		if songs == nil {
+			w.WriteHeader(http.StatusNotFound)
+		} else {
+			jsonOut, _ := json.Marshal(songs)
+			fmt.Fprintf(w, string(jsonOut))
+		}
+	} else {
+		http.Error(w, "Minimum length is greater than maximum.", http.StatusBadRequest)
 	}
 }

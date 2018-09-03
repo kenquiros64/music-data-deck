@@ -44,7 +44,7 @@ func GetAllSongs() []models.Song {
 			})
 	}
 
-	rows.Close() //good habit to close
+	rows.Close() // close rows
 
 	db.Close()
 
@@ -92,7 +92,7 @@ func SearchSong(value string) []models.Song {
 			})
 	}
 
-	rows.Close() //good habit to close
+	rows.Close() // close rows
 
 	db.Close()
 
@@ -132,7 +132,7 @@ func SearchGenre(value string) []models.Genre {
 			})
 	}
 
-	rows.Close() //good habit to close
+	rows.Close() // close rows
 
 	db.Close()
 
@@ -174,9 +174,58 @@ func GenresSongInfo() []models.GenreSongInfo {
 			})
 	}
 
-	rows.Close() //good habit to close
+	rows.Close() // close rows
 
 	db.Close()
 
 	return genres
+}
+
+// SongsByLength get all songs between minimun and maximum length
+func SongsByLength(minLength int, maxLength int) []models.Song {
+	db, err := sql.Open("sqlite3", "./jrdd.db")
+	defer db.Close()
+
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	// query
+	rows, err := db.Query("SELECT s.id, s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.length between ? and ?", minLength, maxLength)
+
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+
+	var id int
+	var artist string
+	var song string
+	var genre string
+	var length int
+
+	songs := []models.Song{}
+
+	for rows.Next() {
+		err = rows.Scan(&id, &artist, &song, &genre, &length)
+		if err != nil {
+			fmt.Println(err)
+			return nil
+		}
+		songs = append(songs,
+			models.Song{
+				ID:     id,
+				Artist: artist,
+				Song:   song,
+				Genre:  genre,
+				Length: length,
+			})
+	}
+
+	rows.Close() // close rows
+
+	db.Close()
+
+	return songs
+
 }

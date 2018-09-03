@@ -16,6 +16,7 @@ func main() {
 	mux.HandleFunc(pat.Get("/songs/search/:value"), controllers.SearchSong)
 	mux.HandleFunc(pat.Get("/genres/search/:value"), controllers.SearchGenre)
 	mux.HandleFunc(pat.Get("/genres/info"), controllers.GenresSongInfo)
+	mux.HandleFunc(pat.Get("/songs/search/:min/:max"), controllers.SongsByLength)
 
 	mux.Use(customLog)
 	http.ListenAndServe("localhost:8000", mux)

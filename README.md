@@ -40,14 +40,15 @@ Now the project is running on http://localhost:8000. In the next step, it shows 
 
 ### 3. Consuming API
 
-The table below shows the different actions that can be consumed via API.
+The table below shows the different actions that can be consumed via API. The project is running on http://localhost:8000.
 
-| ACTION           | GET                   | COMMENTS                          |
-| ---------------- | --------------------- | ----------------------------------|
-| All songs        | /songs                | Get all songs stored on database.  |
-| Search songs     | /songs/search/:value  | Search all the songs that matches with the given value. You can search it by artist, song name or genre.|
-| Search genres    | /genres/search/:value | Search all the genres that matches with the given value. You can search it by name.                  |
-| Genre Song Info  | /genres/info          | Get a list of the genres, and the number of songs and the total length of all the songs by genre.             |
+| ACTION                 | GET                     | COMMENTS                                                                                                |
+| ---------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------- |
+| All songs              | /songs                  | Get all songs stored on database.                                                                       |
+| Search songs           | /songs/search/:value    | Search all the songs that matches with the given value. You can search it by artist, song name or genre.|
+| Search genres          | /genres/search/:value   | Search all the genres that matches with the given value. You can search it by name.                     |
+| Genre Song Info        | /genres/info            | Get a list of the genres, and the number of songs and the total length of all the songs by genre.       |
+| Search songs by length | /songs/search/:min/:max | Get all songs from database between minimun and maximum length.                                         |
 
 
 ## Project configuration
