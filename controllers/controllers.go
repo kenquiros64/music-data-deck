@@ -14,7 +14,7 @@ import (
 func AllSongs(w http.ResponseWriter, r *http.Request) {
 	songs := repositories.GetAllSongs()
 	if songs == nil {
-		w.WriteHeader(http.StatusNotFound)
+		http.Error(w, "Something has occured. ", http.StatusInternalServerError)
 	} else {
 		jsonOut, _ := json.Marshal(songs)
 		fmt.Fprintf(w, string(jsonOut))
@@ -26,8 +26,9 @@ func AllSongs(w http.ResponseWriter, r *http.Request) {
 func SearchSong(w http.ResponseWriter, r *http.Request) {
 	value := pat.Param(r, "value")
 	songs := repositories.SearchSong(value)
+	songs = nil
 	if songs == nil {
-		w.WriteHeader(http.StatusNotFound)
+		http.Error(w, "Something has occured. ", http.StatusInternalServerError)
 	} else {
 		jsonOut, _ := json.Marshal(songs)
 		fmt.Fprintf(w, string(jsonOut))
@@ -41,7 +42,7 @@ func SearchGenre(w http.ResponseWriter, r *http.Request) {
 	genres := repositories.SearchGenre(value)
 
 	if genres == nil {
-		w.WriteHeader(http.StatusNotFound)
+		http.Error(w, "Something has occured. ", http.StatusInternalServerError)
 	} else {
 		jsonOut, _ := json.Marshal(genres)
 		fmt.Fprintf(w, string(jsonOut))
@@ -54,7 +55,7 @@ func GenresSongInfo(w http.ResponseWriter, r *http.Request) {
 	genresSongInfo := repositories.GenresSongInfo()
 
 	if genresSongInfo == nil {
-		w.WriteHeader(http.StatusNotFound)
+		http.Error(w, "Something has occured. ", http.StatusInternalServerError)
 	} else {
 		jsonOut, _ := json.Marshal(genresSongInfo)
 		fmt.Fprintf(w, string(jsonOut))
