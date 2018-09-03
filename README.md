@@ -8,7 +8,7 @@ First, you have to clone the project from GitHub into your workspace.
 
 ### 1. Cloning the project
 
-Run the following command to clone the project. Clone the project in the src folder of your worksapce.
+Run the following command to clone the project. Clone the project in the $GOPATH/src folder of your worksapce.
 
 ```
 git clone https://github.com/kenquiros64/music-data-deck.git
@@ -21,6 +21,33 @@ The next step you must do is to install all dependecies.It is necessary to have 
 ```
 glide install
 ```
+
+### 3. Running the project
+
+To run the project you should build it first, to do this you must go to the project folder and execute the command below:
+
+```
+go build
+```
+
+To execute the project, you must execute the following command
+
+```
+./music-data-deck
+```
+
+Now the project is running on http://localhost:8000. In the next step, it shows how the API can be consumed.
+
+### 3. Consuming API
+
+The table below shows the different actions that can be consumed via API.
+
+| ACTION           | GET                   | COMMENTS                          |
+| ---------------- | --------------------- | ----------------------------------|
+| All songs        | /songs                | Get all songs stored on database  |
+| Search songs     | /songs/search/:value  | Search all the songs that matches with the given value. You can search it by artist, song name or genre.|
+| Search genres    | /genres/search/:value | Search all the genres that matches with the given value. You can search it by name.                  |
+
 
 ## Project configuration
 
