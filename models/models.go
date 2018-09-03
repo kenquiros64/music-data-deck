@@ -14,3 +14,10 @@ type Genre struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
+
+// GenreSongInfo model structure
+type GenreSongInfo struct {
+	Name        string `json:"name"`
+	TotalSongs  int    `json:"songs"`
+	TotalLength int    `json:"length"`
+}

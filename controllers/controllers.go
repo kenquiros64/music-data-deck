@@ -47,3 +47,16 @@ func SearchGenre(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, string(jsonOut))
 	}
 }
+
+// GenresSongInfo GET Method ["/genres/info"]
+// Return a list of the genres, and the number of songs and the total length of all the songs by genre.
+func GenresSongInfo(w http.ResponseWriter, r *http.Request) {
+	genresSongInfo := repositories.GenresSongInfo()
+
+	if genresSongInfo == nil {
+		w.WriteHeader(http.StatusNotFound)
+	} else {
+		jsonOut, _ := json.Marshal(genresSongInfo)
+		fmt.Fprintf(w, string(jsonOut))
+	}
+}
