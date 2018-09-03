@@ -13,6 +13,8 @@ import (
 func main() {
 	mux := goji.NewMux()
 	mux.HandleFunc(pat.Get("/songs"), controllers.AllSongs)
+	mux.HandleFunc(pat.Get("/songs/search/:value"), controllers.SearchSong)
+	mux.HandleFunc(pat.Get("/genres/search/:value"), controllers.SearchGenre)
 
 	mux.Use(customLog)
 	http.ListenAndServe("localhost:8000", mux)
