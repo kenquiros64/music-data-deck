@@ -15,13 +15,12 @@ func GetAllSongs() []models.Song {
 		return nil
 	}
 	// query
-	rows, err := db.Query("SELECT s.id, s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id")
+	rows, err := db.Query("SELECT s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id")
 
 	if err != nil {
 		return nil
 	}
 
-	var id int
 	var artist string
 	var song string
 	var genre string
@@ -30,13 +29,12 @@ func GetAllSongs() []models.Song {
 	songs := []models.Song{}
 
 	for rows.Next() {
-		err = rows.Scan(&id, &artist, &song, &genre, &length)
+		err = rows.Scan(&artist, &song, &genre, &length)
 		if err != nil {
 			return nil
 		}
 		songs = append(songs,
 			models.Song{
-				ID:     id,
 				Artist: artist,
 				Song:   song,
 				Genre:  genre,
@@ -61,14 +59,13 @@ func SearchSong(value string) []models.Song {
 		return nil
 	}
 	// query
-	rows, err := db.Query("SELECT s.id, s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.artist like ? or s.song like ? or g.name like ?", value, value, value)
+	rows, err := db.Query("SELECT s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.artist like ? or s.song like ? or g.name like ?", value, value, value)
 
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
 
-	var id int
 	var artist string
 	var song string
 	var genre string
@@ -77,14 +74,13 @@ func SearchSong(value string) []models.Song {
 	songs := []models.Song{}
 
 	for rows.Next() {
-		err = rows.Scan(&id, &artist, &song, &genre, &length)
+		err = rows.Scan(&artist, &song, &genre, &length)
 		if err != nil {
 			fmt.Println(err)
 			return nil
 		}
 		songs = append(songs,
 			models.Song{
-				ID:     id,
 				Artist: artist,
 				Song:   song,
 				Genre:  genre,
@@ -109,25 +105,23 @@ func SearchGenre(value string) []models.Genre {
 		return nil
 	}
 	// query
-	rows, err := db.Query("SELECT g.id, g.name FROM Genres g WHERE g.name like ?", value)
+	rows, err := db.Query("SELECT g.name FROM Genres g WHERE g.name like ?", value)
 
 	if err != nil {
 		return nil
 	}
 
-	var id int
 	var genre string
 
 	genres := []models.Genre{}
 
 	for rows.Next() {
-		err = rows.Scan(&id, &genre)
+		err = rows.Scan(&genre)
 		if err != nil {
 			return nil
 		}
 		genres = append(genres,
 			models.Genre{
-				ID:   id,
 				Name: genre,
 			})
 	}
@@ -191,14 +185,13 @@ func SongsByLength(minLength int, maxLength int) []models.Song {
 		return nil
 	}
 	// query
-	rows, err := db.Query("SELECT s.id, s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.length between ? and ?", minLength, maxLength)
+	rows, err := db.Query("SELECT s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.length between ? and ?", minLength, maxLength)
 
 	if err != nil {
 		fmt.Println(err)
 		return nil
 	}
 
-	var id int
 	var artist string
 	var song string
 	var genre string
@@ -207,14 +200,13 @@ func SongsByLength(minLength int, maxLength int) []models.Song {
 	songs := []models.Song{}
 
 	for rows.Next() {
-		err = rows.Scan(&id, &artist, &song, &genre, &length)
+		err = rows.Scan(&artist, &song, &genre, &length)
 		if err != nil {
 			fmt.Println(err)
 			return nil
 		}
 		songs = append(songs,
 			models.Song{
-				ID:     id,
 				Artist: artist,
 				Song:   song,
 				Genre:  genre,
