@@ -61,7 +61,7 @@ func SearchSong(value string) []models.Song {
 		return nil
 	}
 	// query
-	rows, err := db.Query("SELECT s.id, s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.artist = ? or s.song = ? or g.name = ?", value, value, value)
+	rows, err := db.Query("SELECT s.id, s.artist, s.song, g.name, s.length FROM Songs s INNER JOIN Genres g ON s.genre = g.id WHERE s.artist like ? or s.song like ? or g.name like ?", value, value, value)
 
 	if err != nil {
 		fmt.Println(err)
