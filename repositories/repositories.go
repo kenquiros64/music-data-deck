@@ -138,3 +138,45 @@ func SearchGenre(value string) []models.Genre {
 
 	return genres
 }
+
+// GenresSongInfo Return a list of the genres, and the number of songs and the total length of all the songs by genre.
+// No parameters. Return an array with the list of genres
+func GenresSongInfo() []models.GenreSongInfo {
+	db, err := sql.Open("sqlite3", "./jrdd.db")
+	defer db.Close()
+
+	if err != nil {
+		return nil
+	}
+	// query
+	rows, err := db.Query("SELECT g.name, COUNT(s.song), SUM(s.length) FROM Songs s INNER JOIN Genres g ON s.genre = g.id GROUP BY g.name")
+
+	if err != nil {
+		return nil
+	}
+
+	var genre string
+	var totalSongs int
+	var totalLength int
+
+	genres := []models.GenreSongInfo{}
+
+	for rows.Next() {
+		err = rows.Scan(&genre, &totalSongs, &totalLength)
+		if err != nil {
+			return nil
+		}
+		genres = append(genres,
+			models.GenreSongInfo{
+				Name:        genre,
+				TotalSongs:  totalSongs,
+				TotalLength: totalLength,
+			})
+	}
+
+	rows.Close() //good habit to close
+
+	db.Close()
+
+	return genres
+}

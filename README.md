@@ -44,9 +44,10 @@ The table below shows the different actions that can be consumed via API.
 
 | ACTION           | GET                   | COMMENTS                          |
 | ---------------- | --------------------- | ----------------------------------|
-| All songs        | /songs                | Get all songs stored on database  |
+| All songs        | /songs                | Get all songs stored on database.  |
 | Search songs     | /songs/search/:value  | Search all the songs that matches with the given value. You can search it by artist, song name or genre.|
 | Search genres    | /genres/search/:value | Search all the genres that matches with the given value. You can search it by name.                  |
+| Genre Song Info  | /genres/info          | Get a list of the genres, and the number of songs and the total length of all the songs by genre.             |
 
 
 ## Project configuration
