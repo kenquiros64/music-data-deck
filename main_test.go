@@ -37,3 +37,20 @@ func TestAllSongs(t *testing.T) {
 		t.Error("Invalid status code")
 	}
 }
+
+// TestGenreInfo Test genre info
+func TestGenreInfo(t *testing.T) {
+	m := web.New()
+	m.Get("/genres/info", controllers.GenresSongInfo)
+	ts := httptest.NewServer(m)
+	defer ts.Close()
+
+	res, err := http.Get(ts.URL + "/genres/info")
+	if err != nil {
+		t.Error("unexpected")
+	}
+	_, s := ParseResponse(res)
+	if s != http.StatusOK {
+		t.Error("Invalid status code")
+	}
+}
