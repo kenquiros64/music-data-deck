@@ -50,6 +50,14 @@ The table below shows the different actions that can be consumed via API. The pr
 | Genre Song Info        | /genres/info            | Get a list of the genres, and the number of songs and the total length of all the songs by genre.       |
 | Search songs by length | /songs/search/:min/:max | Get all songs from database between minimun and maximum length.                                         |
 
+List of examples
+
+| ACTION                 | GET                     | EXAMPLES                                                                                                |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| Search songs           | /songs/search/:value    | /songs/search/424                                                                                      |
+| Search genres          | /genres/search/:value   | /genres/search/Classic%20Rock                                                                           |
+| Search songs by length | /songs/search/:min/:max | /songs/search/200/245                                         |
+
 ### 3. Testing application
 
 To execute all the tests, you must run the following command in the terminal. Go to the project folder and execute:
