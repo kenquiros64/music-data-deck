@@ -50,6 +50,13 @@ The table below shows the different actions that can be consumed via API. The pr
 | Genre Song Info        | /genres/info            | Get a list of the genres, and the number of songs and the total length of all the songs by genre.       |
 | Search songs by length | /songs/search/:min/:max | Get all songs from database between minimun and maximum length.                                         |
 
+### 3. Testing application
+
+To execute all the tests, you must run the following command in the terminal. Go to the project folder and execute:
+
+```
+go test
+```
 
 ## Project configuration
 
@@ -60,6 +67,8 @@ What things you need to install the software and how to install them. For this p
 ```
 Golang 1.9.7
 goji.io
+github.com/mattn/go-sqlite3
+github.com/zenazn/goji/web
 ```
 
 ### Installing Go on Linux, macOS
