@@ -110,3 +110,17 @@ Or
 glide get github.com/foo/bar#^1.2.3
 ```
 
+
+## Additonal questions
+
+1. Are there any suggestions you could make about the structure of our data?
+
+First, create a new table Artist with id and name. This could help us to separate entities with the correct structure and attributes.
+
+The maximum length of the varchar is very large, it could be made smaller.
+
+2. What fields would you index in these tables?
+
+For Songs, I could index id and genre.
+For Genres, I could index just the id.
+
