@@ -53,7 +53,7 @@ The table below shows the different actions that can be consumed via API. The pr
 List of examples
 
 | ACTION                 | GET                     | EXAMPLES                                                                                                |
-| ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| ---------------------- | ------------------------| ------------------------------------------------------------------------------------------------------- |
 | Search songs           | /songs/search/:value    | /songs/search/424                                                                                      |
 | Search genres          | /genres/search/:value   | /genres/search/Classic%20Rock                                                                           |
 | Search songs by length | /songs/search/:min/:max | /songs/search/200/245                                         |
